@@ -1,9 +1,10 @@
 package com.hearthsim.card.minion.concrete;
 
-import com.hearthsim.card.Deck;
+import com.hearthsim.card.Deck;import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.card.minion.Beast;
 import com.hearthsim.card.minion.Hero;
 import com.hearthsim.card.minion.Minion;
+import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.exception.HSException;
 import com.hearthsim.model.BoardModel;
 import com.hearthsim.model.PlayerModel;
@@ -32,7 +33,7 @@ public class StampedingKodo extends Beast {
         transformed_ = TRANSFORMED;
 	}
 
-	@Override
+	
 	public EnumSet<BattlecryTargetType> getBattlecryTargets() {
 		return EnumSet.of(BattlecryTargetType.NO_TARGET);
 	}
@@ -40,9 +41,9 @@ public class StampedingKodo extends Beast {
 	/**
 	 * Battlecry: Destroy
 	 */
-	@Override
+	
 	public HearthTreeNode useUntargetableBattlecry_core(
-			Minion minionPlacementTarget,
+			BaseEntity minionPlacementTarget,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1,
@@ -52,13 +53,13 @@ public class StampedingKodo extends Beast {
 		HearthTreeNode toRet = boardState;
 		if (singleRealizationOnly) {
 			if (toRet != null) {
-				List<Minion> possibleTargets = new ArrayList<Minion>();
-				for (Minion minion : PlayerSide.WAITING_PLAYER.getPlayer(toRet).getMinions()) {
+				List<BaseEntity> possibleTargets = new ArrayList<BaseEntity>();
+				for (BaseEntity minion : PlayerSide.WAITING_PLAYER.getPlayer(toRet).getMinions()) {
 					if (minion.getTotalAttack() <= 2)
-						possibleTargets.add(minion);
+						possibleTargets.add((Minion) minion);
 				}
 				if (possibleTargets.size() > 0) {
-					Minion targetMinion = possibleTargets.get((int)(Math.random() * possibleTargets.size()));
+					BaseEntity targetMinion = (Minion) possibleTargets.get((int)(Math.random() * possibleTargets.size()));
 					targetMinion.setHealth((byte)-99); //destroyed!
 				}
 			}
@@ -68,15 +69,15 @@ public class StampedingKodo extends Beast {
 			toRet = new RandomEffectNode(boardState, new HearthAction(HearthAction.Verb.USE_CARD, PlayerSide.CURRENT_PLAYER, thisMinionIndex, PlayerSide.CURRENT_PLAYER, placementTargetIndex));
 			if (toRet != null) {
 				List<Minion> possibleTargets = new ArrayList<Minion>();
-				for (Minion minion : PlayerSide.WAITING_PLAYER.getPlayer(toRet).getMinions()) {
+				for (BaseEntity minion : PlayerSide.WAITING_PLAYER.getPlayer(toRet).getMinions()) {
 					if (minion.getTotalAttack() <= 2)
-						possibleTargets.add(minion);
+						possibleTargets.add((Minion) minion);
 				}
 				if (possibleTargets.size() > 0) {
 					PlayerModel targetPlayer = PlayerSide.WAITING_PLAYER.getPlayer(toRet);
-					for (Minion possibleTarget : possibleTargets) {
+					for (BaseEntity possibleTarget : possibleTargets) {
 						HearthTreeNode newState = new HearthTreeNode((BoardModel) toRet.data_.deepCopy());
-						Minion targetMinion = PlayerSide.WAITING_PLAYER.getPlayer(newState).getMinions().get(targetPlayer.getMinions().indexOf(possibleTarget));
+						BaseEntity targetMinion = (Minion) PlayerSide.WAITING_PLAYER.getPlayer(newState).getMinions().get(targetPlayer.getMinions().indexOf(possibleTarget));
 						targetMinion.setHealth((byte)-99); //destroyed!
 						newState = BoardStateFactoryBase.handleDeadMinions(newState, deckPlayer0, deckPlayer1);
 						toRet.addChild(newState);

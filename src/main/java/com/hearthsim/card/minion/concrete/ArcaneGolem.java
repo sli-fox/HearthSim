@@ -2,6 +2,7 @@ package com.hearthsim.card.minion.concrete;
 
 import com.hearthsim.card.Deck;
 import com.hearthsim.card.minion.Minion;
+import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.exception.HSException;
 import com.hearthsim.util.tree.HearthTreeNode;
 
@@ -22,7 +23,7 @@ public class ArcaneGolem extends Minion {
         transformed_ = TRANSFORMED;
 	}
 
-	@Override
+	
 	public EnumSet<BattlecryTargetType> getBattlecryTargets() {
 		return EnumSet.of(BattlecryTargetType.NO_TARGET);
 	}
@@ -30,9 +31,9 @@ public class ArcaneGolem extends Minion {
 	/**
 	 * Battlecry: Destroy your opponent's weapon
 	 */
-	@Override
+	
 	public HearthTreeNode useUntargetableBattlecry_core(
-			Minion minionPlacementTarget,
+			BaseEntity minionPlacementTarget,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1,

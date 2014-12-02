@@ -1,8 +1,9 @@
 package com.hearthsim.card.spellcard.concrete;
 
-import com.hearthsim.card.Deck;
+import com.hearthsim.card.Deck;import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.card.minion.Minion;
 import com.hearthsim.card.spellcard.SpellCard;
+import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.exception.HSException;
 import com.hearthsim.model.PlayerSide;
 import com.hearthsim.util.tree.HearthTreeNode;
@@ -27,7 +28,7 @@ public class Equality extends SpellCard {
 		this(false);
 	}
 	
-	@Override
+	
 	public Object deepCopy() {
 		return new Equality(this.hasBeenUsed);
 	}
@@ -41,10 +42,10 @@ public class Equality extends SpellCard {
      *
      * @return The boardState is manipulated and returned
 	 */
-	@Override
+	
 	protected HearthTreeNode use_core(
 			PlayerSide side,
-			Minion targetMinion,
+			BaseEntity targetMinion,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1,
@@ -57,10 +58,10 @@ public class Equality extends SpellCard {
 		
 		HearthTreeNode toRet = super.use_core(side, targetMinion, boardState, deckPlayer0, deckPlayer1, singleRealizationOnly);
 		if (toRet != null) {
-			for (Minion minion : PlayerSide.CURRENT_PLAYER.getPlayer(toRet).getMinions()) {
+			for (BaseEntity minion : PlayerSide.CURRENT_PLAYER.getPlayer(toRet).getMinions()) {
 				minion.setHealth((byte)1);
 			}
-			for (Minion minion : PlayerSide.WAITING_PLAYER.getPlayer(toRet).getMinions()) {
+			for (BaseEntity minion : PlayerSide.WAITING_PLAYER.getPlayer(toRet).getMinions()) {
 				minion.setHealth((byte)1);
 			}
 		}

@@ -1,6 +1,6 @@
 package com.hearthsim.card.minion.concrete;
 
-import com.hearthsim.card.Deck;
+import com.hearthsim.card.Deck;import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.card.minion.Minion;
 import com.hearthsim.card.minion.Murloc;
 import com.hearthsim.exception.HSException;
@@ -25,7 +25,7 @@ public class MurlocTidehunter extends Murloc {
         transformed_ = TRANSFORMED;
 	}
 	
-	@Override
+	
 	public EnumSet<BattlecryTargetType> getBattlecryTargets() {
 		return EnumSet.of(BattlecryTargetType.NO_TARGET);
 	}
@@ -33,9 +33,9 @@ public class MurlocTidehunter extends Murloc {
 	/**
 	 * Battlecry: Summon a Murloc Scout
 	 */
-	@Override
+	
 	public HearthTreeNode useUntargetableBattlecry_core(
-			Minion minionPlacementTarget,
+			BaseEntity minionPlacementTarget,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1,

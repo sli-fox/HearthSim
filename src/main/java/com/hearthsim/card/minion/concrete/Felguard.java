@@ -1,6 +1,6 @@
 package com.hearthsim.card.minion.concrete;
 
-import com.hearthsim.card.Deck;
+import com.hearthsim.card.Deck;import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.card.minion.Demon;
 import com.hearthsim.card.minion.Minion;
 import com.hearthsim.exception.HSException;
@@ -23,7 +23,7 @@ public class Felguard extends Demon {
         transformed_ = TRANSFORMED;
 	}
 
-	@Override
+	
 	public EnumSet<BattlecryTargetType> getBattlecryTargets() {
 		return EnumSet.of(BattlecryTargetType.NO_TARGET);
 	}
@@ -31,9 +31,9 @@ public class Felguard extends Demon {
 	/**
 	 * Taunt.  Battlecry: Destroy one of your Mana Crystals
 	 */
-	@Override
+	
 	public HearthTreeNode useUntargetableBattlecry_core(
-			Minion minionPlacementTarget,
+			BaseEntity minionPlacementTarget,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1,

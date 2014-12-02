@@ -1,6 +1,6 @@
 package com.hearthsim.card.minion.concrete;
 
-import com.hearthsim.card.Deck;
+import com.hearthsim.card.Deck;import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.card.minion.Minion;
 import com.hearthsim.exception.HSException;
 import com.hearthsim.model.PlayerSide;
@@ -23,7 +23,7 @@ public class EarthenRingFarseer extends Minion {
         transformed_ = TRANSFORMED;
 	}
 	
-	@Override
+	
 	public EnumSet<BattlecryTargetType> getBattlecryTargets() {
 		return EnumSet.of(BattlecryTargetType.FRIENDLY_HERO, BattlecryTargetType.ENEMY_HERO, BattlecryTargetType.FRIENDLY_MINIONS, BattlecryTargetType.ENEMY_MINIONS);
 	}
@@ -31,10 +31,10 @@ public class EarthenRingFarseer extends Minion {
 	/**
 	 * Battlecry: Restore 3 health
 	 */
-	@Override
+	
 	public HearthTreeNode useTargetableBattlecry_core(
 			PlayerSide side,
-			Minion targetMinion,
+			BaseEntity targetMinion,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1

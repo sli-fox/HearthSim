@@ -1,6 +1,6 @@
 package com.hearthsim.card.minion.concrete;
 
-import com.hearthsim.card.Deck;
+import com.hearthsim.card.Deck;import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.card.minion.Minion;
 import com.hearthsim.exception.HSException;
 import com.hearthsim.model.PlayerSide;
@@ -23,7 +23,7 @@ public class DarkscaleHealer extends Minion {
         transformed_ = TRANSFORMED;
 	}
 	
-	@Override
+	
 	public EnumSet<BattlecryTargetType> getBattlecryTargets() {
 		return EnumSet.of(BattlecryTargetType.NO_TARGET);
 	}
@@ -31,9 +31,9 @@ public class DarkscaleHealer extends Minion {
 	/**
 	 * Battlecry: Heals friendly characters for 2
 	 */
-	@Override
+	
 	public HearthTreeNode useUntargetableBattlecry_core(
-			Minion minionPlacementTarget,
+			BaseEntity minionPlacementTarget,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1,
@@ -42,7 +42,7 @@ public class DarkscaleHealer extends Minion {
 	{
 		HearthTreeNode toRet = boardState;
 		toRet = toRet.data_.getCurrentPlayerHero().takeHeal((byte)2, PlayerSide.CURRENT_PLAYER, toRet, deckPlayer0, deckPlayer1);
-		for (Minion minion : PlayerSide.CURRENT_PLAYER.getPlayer(toRet).getMinions()) {
+		for (BaseEntity minion : PlayerSide.CURRENT_PLAYER.getPlayer(toRet).getMinions()) {
 			toRet = minion.takeHeal((byte)2, PlayerSide.CURRENT_PLAYER, toRet, deckPlayer0, deckPlayer1);
 		}
 		return toRet;

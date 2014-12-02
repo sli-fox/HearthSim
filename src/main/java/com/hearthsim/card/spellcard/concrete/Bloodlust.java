@@ -1,8 +1,9 @@
 package com.hearthsim.card.spellcard.concrete;
 
-import com.hearthsim.card.Deck;
+import com.hearthsim.card.Deck;import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.card.minion.Minion;
 import com.hearthsim.card.spellcard.SpellCard;
+import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.exception.HSException;
 import com.hearthsim.model.PlayerSide;
 import com.hearthsim.util.tree.HearthTreeNode;
@@ -17,7 +18,7 @@ public class Bloodlust extends SpellCard {
 		super((byte)5, hasBeenUsed);
 	}
 	
-	@Override
+	
 	public Object deepCopy() {
 		return new Bloodlust(this.hasBeenUsed);
 	}
@@ -35,10 +36,10 @@ public class Bloodlust extends SpellCard {
      *
      * @return The boardState is manipulated and returned
 	 */
-	@Override
+	
 	protected HearthTreeNode use_core(
 			PlayerSide side,
-			Minion targetMinion,
+			BaseEntity targetMinion,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1,
@@ -51,7 +52,7 @@ public class Bloodlust extends SpellCard {
 		
 		HearthTreeNode toRet = super.use_core(side, targetMinion, boardState, deckPlayer0, deckPlayer1, singleRealizationOnly);
 		
-		for (Minion minion : PlayerSide.CURRENT_PLAYER.getPlayer(toRet).getMinions()) {
+		for (BaseEntity minion : PlayerSide.CURRENT_PLAYER.getPlayer(toRet).getMinions()) {
 			minion.setExtraAttackUntilTurnEnd((byte)3);
 		}
 		return toRet;

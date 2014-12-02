@@ -2,6 +2,7 @@ package com.hearthsim.card.minion.concrete;
 
 import com.hearthsim.card.Deck;
 import com.hearthsim.card.minion.Minion;
+import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.exception.HSException;
 import com.hearthsim.model.PlayerSide;
 import com.hearthsim.util.tree.HearthTreeNode;
@@ -23,7 +24,7 @@ public class BloodKnight extends Minion {
         transformed_ = TRANSFORMED;
 	}
 	
-	@Override
+	
 	public EnumSet<BattlecryTargetType> getBattlecryTargets() {
 		return EnumSet.of(BattlecryTargetType.NO_TARGET);
 	}
@@ -31,9 +32,9 @@ public class BloodKnight extends Minion {
 	/**
 	 * Battlecry: All minions lose Divine Shield.  Gain +3/+3 for each Shield lost
 	 */
-	@Override
+	
 	public HearthTreeNode useUntargetableBattlecry_core(
-			Minion minionPlacementTarget,
+			BaseEntity minionPlacementTarget,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1,
@@ -41,14 +42,14 @@ public class BloodKnight extends Minion {
 		) throws HSException
 	{
 		HearthTreeNode toRet = boardState;
-		for (Minion minion : PlayerSide.CURRENT_PLAYER.getPlayer(toRet).getMinions()) {
+		for (BaseEntity minion : PlayerSide.CURRENT_PLAYER.getPlayer(toRet).getMinions()) {
 			if (minion != this && minion.getDivineShield()) {
 				minion.setDivineShield(false);
 				this.setHealth((byte)(this.getHealth() + 3));
 				this.setAttack((byte)(this.getAttack() + 3));
 			}
 		}
-		for (Minion minion : PlayerSide.WAITING_PLAYER.getPlayer(toRet).getMinions()) {
+		for (BaseEntity minion : PlayerSide.WAITING_PLAYER.getPlayer(toRet).getMinions()) {
 			if (minion.getDivineShield()) {
 				minion.setDivineShield(false);
 				this.setHealth((byte)(this.getHealth() + 3));

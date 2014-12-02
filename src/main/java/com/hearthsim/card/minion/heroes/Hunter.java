@@ -3,6 +3,7 @@ package com.hearthsim.card.minion.heroes;
 import com.hearthsim.card.Deck;
 import com.hearthsim.card.minion.Hero;
 import com.hearthsim.card.minion.Minion;
+import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.exception.HSException;
 import com.hearthsim.model.PlayerSide;
 import com.hearthsim.util.DeepCopyable;
@@ -34,7 +35,7 @@ public class Hunter extends Hero {
 		super(name, attack, extraAttackUntilTurnEnd, health, armor, weaponCharge, windFury, hasAttacked, hasWindFuryAttacked, frozen, hasBeenUsed);
 	}
 	
-	@Override
+	
 	public DeepCopyable deepCopy() {
 		return new Hunter(
 				this.name_, 
@@ -66,10 +67,10 @@ public class Hunter extends Hero {
      *
      * @return
 	 */
-	@Override
+	
 	public HearthTreeNode useHeroAbility_core(
 			PlayerSide targetPlayerSide,
-			Minion targetMinion,
+			BaseEntity targetMinion,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1,

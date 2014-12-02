@@ -1,6 +1,6 @@
 package com.hearthsim.card.minion.concrete;
 
-import com.hearthsim.card.Deck;
+import com.hearthsim.card.Deck;import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.card.minion.Minion;
 import com.hearthsim.card.minion.MinionStateFactory;
 import com.hearthsim.exception.HSException;
@@ -25,7 +25,7 @@ public class Windspeaker extends Minion {
         transformed_ = TRANSFORMED;
 	}
 	
-	@Override
+	
 	public EnumSet<BattlecryTargetType> getBattlecryTargets() {
 		return EnumSet.of(BattlecryTargetType.FRIENDLY_MINIONS);
 	}
@@ -33,10 +33,10 @@ public class Windspeaker extends Minion {
 	/**
 	 * Battlecry: Give a friendly minion +3 Health
 	 */
-	@Override
+	
 	public HearthTreeNode useTargetableBattlecry_core(
 			PlayerSide side,
-			Minion targetMinion,
+			BaseEntity targetMinion,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1
