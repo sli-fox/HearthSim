@@ -1,6 +1,6 @@
 package com.hearthsim.card.spellcard.concrete;
 
-import com.hearthsim.card.Deck;
+import com.hearthsim.card.Deck;import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.card.minion.Minion;
 import com.hearthsim.card.spellcard.SpellDamage;
 import com.hearthsim.exception.HSException;
@@ -18,7 +18,7 @@ public class HammerOfWrath extends SpellDamage {
 		super((byte)4, (byte)3, hasBeenUsed);
 	}
 
-	@Override
+	
 	public Object deepCopy() {
 		return new HammerOfWrath(this.hasBeenUsed);
 	}
@@ -36,10 +36,10 @@ public class HammerOfWrath extends SpellDamage {
      *
      * @return The boardState is manipulated and returned
 	 */
-	@Override
+	
 	protected HearthTreeNode use_core(
 			PlayerSide side,
-			Minion targetMinion,
+			BaseEntity targetMinion,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1,

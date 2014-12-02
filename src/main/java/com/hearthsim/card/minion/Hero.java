@@ -1,21 +1,25 @@
 package com.hearthsim.card.minion;
 
+import org.json.JSONObject;
+
 import com.hearthsim.card.Deck;
+import com.hearthsim.card.minion.Hero;
+import com.hearthsim.card.minion.Minion;
+import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.exception.HSException;
 import com.hearthsim.model.BoardModel;
 import com.hearthsim.model.PlayerSide;
 import com.hearthsim.util.DeepCopyable;
 import com.hearthsim.util.factory.BoardStateFactoryBase;
 import com.hearthsim.util.tree.HearthTreeNode;
-import org.json.JSONObject;
 
-public class Hero extends Minion {
-
+public class Hero extends BaseEntity
+{
 	protected static final byte HERO_ABILITY_COST = 2;  //Assumed to be 2 for all heroes
 	
 	protected byte weaponCharge_;
 	protected byte armor_;
-		
+	
 	public Hero() {
 		this("NoHero", (byte)30);
 	}
@@ -94,7 +98,7 @@ public class Hero extends Minion {
 	@Override
 	public HearthTreeNode attack(
 			PlayerSide targetMinionPlayerSide,
-			Minion targetMinion,
+			BaseEntity targetMinion,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1)
@@ -129,7 +133,7 @@ public class Hero extends Minion {
 	}
 	
 	@Override
-    public boolean canBeUsedOn(PlayerSide playerSide, Minion minion, BoardModel boardModel) {
+    public boolean canBeUsedOn(PlayerSide playerSide, BaseEntity minion, BoardModel boardModel) {
 		if (hasBeenUsed)
 			return false;
 		if (!minion.isHeroTargetable())
@@ -139,7 +143,7 @@ public class Hero extends Minion {
 
 	public final HearthTreeNode useHeroAbility(
 			PlayerSide targetPlayerSide,
-			Minion targetMinion,
+			BaseEntity targetMinion,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1)
@@ -160,7 +164,7 @@ public class Hero extends Minion {
 	 */
 	public final HearthTreeNode useHeroAbility(
 			PlayerSide targetPlayerSide,
-			Minion targetMinion,
+			BaseEntity targetMinion,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1,
@@ -179,7 +183,7 @@ public class Hero extends Minion {
 	
 	public HearthTreeNode useHeroAbility_core(
 			PlayerSide targetPlayerSide,
-			Minion targetMinion,
+			BaseEntity targetMinion,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1,
@@ -250,8 +254,8 @@ public class Hero extends Minion {
 			return false;
 		}
 		Hero hero = (Hero)other;
-		if (weaponCharge_ != hero.weaponCharge_) return false;
-		if (armor_ != hero.armor_) return false;
+		if (weaponCharge_ != hero.getWeaponCharge()) return false;
+		if (armor_ != hero.getArmor()) return false;
 		
 		return true;
 	}

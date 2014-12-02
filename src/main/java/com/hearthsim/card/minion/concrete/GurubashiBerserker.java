@@ -1,6 +1,6 @@
 package com.hearthsim.card.minion.concrete;
 
-import com.hearthsim.card.Deck;
+import com.hearthsim.card.Deck;import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.card.minion.Minion;
 import com.hearthsim.exception.HSException;
 import com.hearthsim.exception.HSInvalidPlayerIndexException;
@@ -45,7 +45,7 @@ public class GurubashiBerserker extends Minion {
      * @param boardState
      * @param isSpellDamage True if this is a spell damage   @throws HSInvalidPlayerIndexException
      * */
-	@Override
+	
 	public HearthTreeNode takeDamage(
 			byte damage,
 			PlayerSide attackPlayerSide,
@@ -79,7 +79,7 @@ public class GurubashiBerserker extends Minion {
      * @param boardState
      * @throws HSInvalidPlayerIndexException
 	 */
-	@Override
+	
 	public void silenced(PlayerSide thisPlayerSide, BoardModel boardState) throws HSInvalidPlayerIndexException {
 		super.silenced(thisPlayerSide, boardState);
 		this.attack_ = this.baseAttack_;

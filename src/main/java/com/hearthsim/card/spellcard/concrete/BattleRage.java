@@ -1,9 +1,10 @@
 package com.hearthsim.card.spellcard.concrete;
 
-import com.hearthsim.card.Deck;
+import com.hearthsim.card.Deck;import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.card.minion.Hero;
 import com.hearthsim.card.minion.Minion;
 import com.hearthsim.card.spellcard.SpellCard;
+import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.exception.HSException;
 import com.hearthsim.model.PlayerModel;
 import com.hearthsim.model.PlayerSide;
@@ -32,7 +33,7 @@ public class BattleRage extends SpellCard {
 		this(false);
 	}
 
-	@Override
+	
 	public Object deepCopy() {
 		return new BattleRage(this.hasBeenUsed);
 	}
@@ -50,10 +51,10 @@ public class BattleRage extends SpellCard {
 	 * 
 	 * @return The boardState is manipulated and returned
 	 */
-	@Override
+	
 	protected HearthTreeNode use_core(
 			PlayerSide targetPlayerSide,
-			Minion targetMinion,
+			BaseEntity targetMinion,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1,
@@ -70,7 +71,7 @@ public class BattleRage extends SpellCard {
             Hero hero = playerModel.getHero();
             MinionList minions = playerModel.getMinions();
             int numCardsToDraw = hero.getTotalHealth() < hero.getTotalMaxHealth() ? 1 : 0;
-			for (Minion minion : minions) {
+			for (BaseEntity minion : minions) {
 				numCardsToDraw += minion.getTotalHealth() < minion.getTotalMaxHealth() ? 1 : 0;
 			}
 			if (toRet instanceof CardDrawNode) {

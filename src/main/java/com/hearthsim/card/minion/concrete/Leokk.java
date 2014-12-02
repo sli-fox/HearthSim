@@ -1,6 +1,6 @@
 package com.hearthsim.card.minion.concrete;
 
-import com.hearthsim.card.Deck;
+import com.hearthsim.card.Deck;import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.card.minion.Beast;
 import com.hearthsim.card.minion.Minion;
 import com.hearthsim.exception.HSException;
@@ -39,10 +39,10 @@ public class Leokk extends Beast {
      *
      * @return The boardState is manipulated and returned
 	 */
-	@Override
+	
 	protected HearthTreeNode summonMinion_core(
             PlayerSide targetSide,
-			Minion targetMinion,
+			BaseEntity targetMinion,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1)
@@ -50,7 +50,7 @@ public class Leokk extends Beast {
 	{	
 		HearthTreeNode toRet = super.summonMinion_core(targetSide, targetMinion, boardState, deckPlayer0, deckPlayer1);
 		if (toRet != null) {
-			for (Minion minion : PlayerSide.CURRENT_PLAYER.getPlayer(toRet).getMinions()) {
+			for (BaseEntity minion : PlayerSide.CURRENT_PLAYER.getPlayer(toRet).getMinions()) {
 				if (minion != this) {
 					minion.setAuraAttack((byte)(minion.getAuraAttack() + 1));
 				}
@@ -72,9 +72,9 @@ public class Leokk extends Beast {
      * @param deckPlayer1
      * @throws HSInvalidPlayerIndexException
 	 */
-	@Override
+	
 	public void silenced(PlayerSide thisPlayerSide, BoardModel boardState) throws HSInvalidPlayerIndexException {
-		for (Minion minion : boardState.getMinions(thisPlayerSide)) {
+		for (BaseEntity minion : boardState.getMinions(thisPlayerSide)) {
 			if (minion != this) {
 				minion.setAuraAttack((byte)(minion.getAuraAttack() - 1));
 			}
@@ -85,7 +85,7 @@ public class Leokk extends Beast {
 	private HearthTreeNode doBuffs(
             PlayerSide thisMinionPlayerSide,
             PlayerSide placedMinionPlayerSide,
-            Minion placedMinion,
+            BaseEntity placedMinion,
             HearthTreeNode boardState) throws HSInvalidPlayerIndexException {
 		if (thisMinionPlayerSide != placedMinionPlayerSide)
 			return boardState;
@@ -110,7 +110,7 @@ public class Leokk extends Beast {
 	public HearthTreeNode minionSummonedEvent(
 			PlayerSide thisMinionPlayerSide,
 			PlayerSide summonedMinionPlayerSide,
-			Minion summonedMinion,
+			BaseEntity summonedMinion,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1)
@@ -131,7 +131,7 @@ public class Leokk extends Beast {
 	public HearthTreeNode minionTransformedEvent(
 			PlayerSide thisMinionPlayerSide,
 			PlayerSide transformedMinionPlayerSide,
-			Minion transformedMinion,
+			BaseEntity transformedMinion,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1)

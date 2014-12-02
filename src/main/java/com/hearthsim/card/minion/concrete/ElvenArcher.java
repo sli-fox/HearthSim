@@ -1,6 +1,6 @@
 package com.hearthsim.card.minion.concrete;
 
-import com.hearthsim.card.Deck;
+import com.hearthsim.card.Deck;import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.card.minion.Minion;
 import com.hearthsim.exception.HSException;
 import com.hearthsim.model.PlayerSide;
@@ -25,7 +25,7 @@ public class ElvenArcher extends Minion {
 	}
 	
 	
-	@Override
+	
 	public EnumSet<BattlecryTargetType> getBattlecryTargets() {
 		return EnumSet.of(BattlecryTargetType.FRIENDLY_HERO, BattlecryTargetType.ENEMY_HERO, BattlecryTargetType.FRIENDLY_MINIONS, BattlecryTargetType.ENEMY_MINIONS);
 	}
@@ -33,10 +33,10 @@ public class ElvenArcher extends Minion {
 	/**
 	 * Battlecry: Deal 1 damage to a chosen target
 	 */
-	@Override
+	
 	public HearthTreeNode useTargetableBattlecry_core(
 			PlayerSide side,
-			Minion targetMinion,
+			BaseEntity targetMinion,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1
@@ -60,10 +60,10 @@ public class ElvenArcher extends Minion {
      *
      * @return The boardState is manipulated and returned
 	 */
-//	@Override
+//	
 //	public HearthTreeNode use_core(
 //			PlayerSide side,
-//			Minion targetMinion,
+//			BaseEntity targetMinion,
 //			HearthTreeNode boardState,
 //			Deck deckPlayer0,
 //			Deck deckPlayer1,
@@ -84,7 +84,7 @@ public class ElvenArcher extends Minion {
 //					if (PlayerSide.CURRENT_PLAYER.getPlayer(toRet).getMinions().get(index) == this)
 //						continue;
 //					HearthTreeNode newState = new HearthTreeNode((BoardModel)boardState.data_.deepCopy());
-//					Minion minion = PlayerSide.CURRENT_PLAYER.getPlayer(newState).getMinions().get(index);
+//					BaseEntity minion = PlayerSide.CURRENT_PLAYER.getPlayer(newState).getMinions().get(index);
 //					newState = minion.takeDamage((byte)1, PlayerSide.CURRENT_PLAYER, PlayerSide.CURRENT_PLAYER, newState, deckPlayer0, deckPlayer1, false, true);
 //					newState = BoardStateFactoryBase.handleDeadMinions(newState, deckPlayer0, deckPlayer1);
 //					toRet.addChild(newState);
@@ -100,7 +100,7 @@ public class ElvenArcher extends Minion {
 //			{
 //				for (int index = 0; index < PlayerSide.WAITING_PLAYER.getPlayer(toRet).getNumMinions(); ++index) {
 //					HearthTreeNode newState = new HearthTreeNode((BoardModel)boardState.data_.deepCopy());
-//					Minion minion = PlayerSide.WAITING_PLAYER.getPlayer(newState).getMinions().get(index);
+//					BaseEntity minion = PlayerSide.WAITING_PLAYER.getPlayer(newState).getMinions().get(index);
 //					newState = minion.takeDamage((byte)1, PlayerSide.CURRENT_PLAYER, PlayerSide.WAITING_PLAYER, newState, deckPlayer0, deckPlayer1, false, true);
 //					newState = BoardStateFactoryBase.handleDeadMinions(newState, deckPlayer0, deckPlayer1);
 //					toRet.addChild(newState);
