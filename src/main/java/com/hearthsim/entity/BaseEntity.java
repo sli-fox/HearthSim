@@ -1,5 +1,6 @@
 package com.hearthsim.entity;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.Iterator;
 
@@ -11,6 +12,7 @@ import com.hearthsim.card.ImplementedCardList;
 import com.hearthsim.card.minion.Beast;
 import com.hearthsim.card.minion.Hero;
 import com.hearthsim.card.minion.Minion;
+import com.hearthsim.card.minion.MinionState;
 import com.hearthsim.card.minion.Murloc;
 import com.hearthsim.card.minion.Minion.BattlecryTargetType;
 import com.hearthsim.event.attack.AttackAction;
@@ -27,7 +29,7 @@ public abstract class BaseEntity extends Card implements DeepCopyable
 {
 	protected byte health_;
 	protected byte attack_;
-	
+	public ArrayList<MinionState> minion_stateList;
 	//Both hero and minion have this
 	protected boolean windFury_;
 	protected boolean hasAttacked_;
@@ -271,6 +273,59 @@ public abstract class BaseEntity extends Card implements DeepCopyable
 	public void setTransformed(boolean value) {
 		transformed_ = value;
 	}
+	
+	public MinionState getState(MinionState state){
+		int index = 0;
+		int count = 0;
+		boolean exists = false;
+		if(minion_stateList != null){
+			for(MinionState ms: minion_stateList){
+				if(ms.getClass().equals(state.getClass())){
+					exists = true;
+					index = count;
+				}
+				count++;
+			}
+		
+		if(exists == true)
+			return minion_stateList.get(index);
+		else
+			return null;
+		}
+		else
+			return null;
+	}
+	
+	public void addState(MinionState state){
+		boolean stateExists = false;
+		if(minion_stateList != null){
+			for(MinionState ms: minion_stateList){
+				if(ms.getClass().equals(state.getClass())){
+					stateExists = true;
+				}
+			}
+			if (stateExists == false)
+				minion_stateList.add(state);
+		}
+	}
+	
+	public void removeState(MinionState state){
+		int count = 0;
+		int removeIndex = 0;
+		boolean exists = false;
+		if(minion_stateList != null){
+			for(MinionState ms: minion_stateList){
+				if(ms.getClass().equals(state.getClass())){
+					exists = true;
+					removeIndex = count;
+				}
+				count++;
+			}
+			if (exists==true)
+				minion_stateList.remove(removeIndex);
+		}
+	}	
+
 	
 	public byte getExtraAttackUntilTurnEnd() {
 		return extraAttackUntilTurnEnd_;
