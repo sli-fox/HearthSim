@@ -3,6 +3,7 @@ package com.hearthsim.card;
 import java.util.ArrayList;
 
 import com.hearthsim.card.minion.Minion;
+import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.exception.HSException;
 import com.hearthsim.model.PlayerSide;
 import com.hearthsim.util.factory.BoardStateFactoryBase;
@@ -23,7 +24,7 @@ public class CardAction {
 	
 	public final HearthTreeNode useOn(
 			PlayerSide side,
-			Minion targetMinion,
+			BaseEntity targetMinion,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1)
@@ -50,7 +51,7 @@ public class CardAction {
 	 */
 	public HearthTreeNode useOn(
 			PlayerSide side,
-			Minion targetMinion,
+			BaseEntity targetMinion,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1,
@@ -62,16 +63,16 @@ public class CardAction {
 
 		//Notify all other cards/characters of the card's use
 		if (toRet != null) {
-			ArrayList<Minion> tmpList = new ArrayList<Minion>(7);
+			ArrayList<BaseEntity> tmpList = new ArrayList<BaseEntity>(7);
             for (Card card : toRet.data_.getCurrentPlayerHand()) {
                 toRet = card.getCardAction().otherCardUsedEvent(PlayerSide.CURRENT_PLAYER, PlayerSide.CURRENT_PLAYER, this.card, toRet, deckPlayer0, deckPlayer1);
             }
 			toRet = toRet.data_.getCurrentPlayerHero().getCardAction().otherCardUsedEvent(PlayerSide.CURRENT_PLAYER, PlayerSide.CURRENT_PLAYER, this.card, toRet, deckPlayer0, deckPlayer1);
 			{
-                for (Minion minion : PlayerSide.CURRENT_PLAYER.getPlayer(toRet).getMinions()) {
+                for (BaseEntity minion : PlayerSide.CURRENT_PLAYER.getPlayer(toRet).getMinions()) {
                     tmpList.add(minion);
                 }
-				for (Minion minion : tmpList) {
+				for (BaseEntity minion : tmpList) {
 					if (!minion.isSilenced())
 						toRet = minion.getCardAction().otherCardUsedEvent(PlayerSide.CURRENT_PLAYER, PlayerSide.CURRENT_PLAYER, this.card, toRet, deckPlayer0, deckPlayer1);
 				}
@@ -82,10 +83,10 @@ public class CardAction {
 			toRet = toRet.data_.getWaitingPlayerHero().getCardAction().otherCardUsedEvent(PlayerSide.WAITING_PLAYER, PlayerSide.CURRENT_PLAYER, this.card, toRet, deckPlayer0, deckPlayer1);
 			{
 				tmpList.clear();
-                for (Minion minion : PlayerSide.WAITING_PLAYER.getPlayer(toRet).getMinions()) {
+                for (BaseEntity minion : PlayerSide.WAITING_PLAYER.getPlayer(toRet).getMinions()) {
                     tmpList.add(minion);
                 }
-				for (Minion minion : tmpList) {
+				for (BaseEntity minion : tmpList) {
 					if (!minion.isSilenced())
 						toRet = minion.getCardAction().otherCardUsedEvent(PlayerSide.WAITING_PLAYER, PlayerSide.CURRENT_PLAYER, this.card, toRet, deckPlayer0, deckPlayer1);
 				}

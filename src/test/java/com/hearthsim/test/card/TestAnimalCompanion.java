@@ -72,7 +72,7 @@ public class TestAnimalCompanion {
 		
 		Card theCard = board.data_.getCurrentPlayerCardHand(1);
 
-		Minion target = board.data_.getCharacter(PlayerSide.WAITING_PLAYER, 0);
+		BaseEntity target = board.data_.getCharacter(PlayerSide.WAITING_PLAYER, 0);
 		HearthTreeNode ret = theCard.getCardAction().useOn(PlayerSide.WAITING_PLAYER, target, board, deck, null);
 		
 		assertTrue(ret == null);
@@ -94,7 +94,7 @@ public class TestAnimalCompanion {
 		board.data_.placeCardHandCurrentPlayer(leokk);
 		
 		Card theCard = board.data_.getCurrentPlayerCardHand(1);
-		Minion target = board.data_.getCharacter(PlayerSide.CURRENT_PLAYER, 2);
+		BaseEntity target = board.data_.getCharacter(PlayerSide.CURRENT_PLAYER, 2);
 		HearthTreeNode ret = theCard.getCardAction().useOn(PlayerSide.CURRENT_PLAYER, target, board, deck, null);
 
 		
@@ -147,7 +147,7 @@ public class TestAnimalCompanion {
 		
 		Card theCard = board.data_.getCurrentPlayerCardHand(0);
 		BaseEntity target = board.data_.getCharacter(PlayerSide.WAITING_PLAYER, 0);
-		HearthTreeNode ret = theCard.useOn(PlayerSide.WAITING_PLAYER, target, board, deck, null);
+		HearthTreeNode ret = theCard.getCardAction().useOn(PlayerSide.WAITING_PLAYER, target, board, deck, null);
 		
 		assertTrue(ret == null);
 		assertEquals(board.data_.getNumCards_hand(), 1);
@@ -166,7 +166,7 @@ public class TestAnimalCompanion {
 		
 		Card theCard = board.data_.getCurrentPlayerCardHand(0);
 		BaseEntity target = board.data_.getCharacter(PlayerSide.CURRENT_PLAYER, 0);
-		HearthTreeNode ret = theCard.useOn(PlayerSide.CURRENT_PLAYER, target, board, deck, null);
+		HearthTreeNode ret = theCard.getCardAction().useOn(PlayerSide.CURRENT_PLAYER, target, board, deck, null);
 		
 		assertFalse(ret == null);
 		assertEquals(1, board.data_.getNumCards_hand());

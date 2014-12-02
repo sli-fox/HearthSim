@@ -129,7 +129,7 @@ public class TestBloodfenRaptor {
 
 		target = board.data_.getCharacter(PlayerSide.WAITING_PLAYER, 0);
 		theAttacker = (Minion) PlayerSide.CURRENT_PLAYER.getPlayer(board).getMinions().get(0);
-		ret = theAttacker.useOn(PlayerSide.WAITING_PLAYER, target, board, null, null);
+		ret = theAttacker.getCardAction().useOn(PlayerSide.WAITING_PLAYER, target, board, null, null);
 		assertTrue("test2", ret == null);
 
 		theAttacker = (Minion) PlayerSide.CURRENT_PLAYER.getPlayer(board).getMinions().get(0);
