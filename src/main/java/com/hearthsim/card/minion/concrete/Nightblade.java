@@ -1,7 +1,10 @@
 package com.hearthsim.card.minion.concrete;
 
+
 import com.hearthsim.card.CardActionNightblade;
-import com.hearthsim.card.Deck;
+
+import com.hearthsim.card.Deck;import com.hearthsim.entity.BaseEntity;
+
 import com.hearthsim.card.minion.Minion;
 import com.hearthsim.exception.HSException;
 import com.hearthsim.model.PlayerSide;
@@ -23,5 +26,4 @@ public class Nightblade extends Minion {
         transformed_ = TRANSFORMED;
         action = new CardActionNightblade(this);
 	}
-	
 }

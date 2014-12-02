@@ -2,6 +2,7 @@ package com.hearthsim.card;
 
 import com.hearthsim.card.minion.Hero;
 import com.hearthsim.card.minion.Minion;
+import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.exception.HSException;
 import com.hearthsim.model.BoardModel;
 import com.hearthsim.model.PlayerSide;
@@ -17,16 +18,8 @@ import java.util.ArrayList;
 public class Card implements DeepCopyable {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
-	/**
-	 * Name of the card
-	 */
 	protected String name_;
-	
-	/**
-	 * Mana cost of the card
-	 */
 	protected byte mana_;
-	
 	protected boolean hasBeenUsed;
 	protected boolean isInHand_;
 	
@@ -208,11 +201,11 @@ public class Card implements DeepCopyable {
      * @param boardModel
 * @return
      */
-    public boolean canBeUsedOn(PlayerSide playerSide, Minion minion, BoardModel boardModel) {
+    public boolean canBeUsedOn(PlayerSide playerSide, BaseEntity minion, BoardModel boardModel) {
         return true;
     }
 
-       
+
 
 	/**
 	 * 
@@ -230,7 +223,7 @@ public class Card implements DeepCopyable {
     
 	protected HearthTreeNode use_core(
 			PlayerSide side,
-			Minion targetMinion,
+			BaseEntity targetMinion,
 			HearthTreeNode boardState,
 			Deck deckPlayer0,
 			Deck deckPlayer1,
@@ -264,7 +257,7 @@ public class Card implements DeepCopyable {
         return PlayerSide.WAITING_PLAYER == side;
     }
 
-    protected boolean isNotHero(Minion targetMinion) {
+    protected boolean isNotHero(BaseEntity targetMinion) {
         return !isHero(targetMinion);
     }
 
@@ -272,7 +265,7 @@ public class Card implements DeepCopyable {
         return PlayerSide.CURRENT_PLAYER == side;
     }
 
-    protected boolean isHero(Minion targetMinion) {
+    protected boolean isHero(BaseEntity targetMinion) {
         return targetMinion instanceof Hero;
     }
 }

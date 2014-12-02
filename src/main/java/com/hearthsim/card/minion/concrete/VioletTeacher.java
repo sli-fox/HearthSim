@@ -1,9 +1,11 @@
 package com.hearthsim.card.minion.concrete;
 
 import com.hearthsim.card.Card;
+
 import com.hearthsim.card.CardActionArchmageAntonidas;
 import com.hearthsim.card.CardActionVioletTeacher;
-import com.hearthsim.card.Deck;
+import com.hearthsim.card.Deck;import com.hearthsim.entity.BaseEntity;
+
 import com.hearthsim.card.minion.Minion;
 import com.hearthsim.card.spellcard.SpellCard;
 import com.hearthsim.exception.HSException;
@@ -23,6 +25,7 @@ public class VioletTeacher extends Minion {
         heroTargetable_ = HERO_TARGETABLE;
         summoned_ = SUMMONED;
         transformed_ = TRANSFORMED;
+
         action = new CardActionVioletTeacher(this);
 	}
 

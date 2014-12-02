@@ -1,5 +1,6 @@
 package com.hearthsim.card.minion;
 
+import com.hearthsim.entity.BaseEntity;
 import com.hearthsim.card.Card;
 import com.hearthsim.card.Deck;
 import com.hearthsim.card.ImplementedCardList;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.Iterator;
 
-public class Minion extends Card {
+public class Minion extends BaseEntity {
 
 	public enum BattlecryTargetType {
 		NO_BATTLECRY,
@@ -28,6 +29,7 @@ public class Minion extends Card {
     	FRIENDLY_MURLOCS, ENEMY_MURLOCS
     }
 	
+
 	MinionStateFactory mf = new MinionStateFactory();
 	public ArrayList<MinionState> minion_stateList; 
 	protected boolean taunt_;
@@ -76,9 +78,7 @@ public class Minion extends Card {
             // only 'Minion' class is not implemented
             mana_ = (byte) implementedCard.mana_;
             name_ = implementedCard.name_;
-            attack_ = (byte) implementedCard.attack_;
             baseAttack_ = attack_;
-            health_ = (byte) implementedCard.health_;
             maxHealth_ = health_;
             baseHealth_ = health_;
             taunt_ = implementedCard.taunt_;
@@ -135,6 +135,7 @@ public class Minion extends Card {
 				null,
 				true,
 				false);
+		
 	}
 	// pass the minionstate_list to slowly replace the implementation
 	public Minion(	String name,
@@ -253,98 +254,6 @@ public class Minion extends Card {
 		//stealthed_ = stealthed;
 		heroTargetable_ = heroTargetable;
 }
-	
-	public boolean getTaunt() {
-		return taunt_;
-	}
-	
-	public void setTaunt(boolean taunt) {
-		taunt_ = taunt;
-	}
-	
-	public byte getHealth() {
-		return health_;
-	}
-	
-	public void setHealth(byte health) {
-		health_ = health;
-	}
-	
-	public void addHealth(byte value) {
-		health_ += value;
-	}
-	
-	public byte getMaxHealth() {
-		return maxHealth_;
-	}
-	
-	public void setMaxHealth(byte health) {
-		maxHealth_ = health;
-	}
-	
-	public void addMaxHealth(byte value) {
-		maxHealth_ += value;
-	}
-	
-	public byte getBaseHealth() {
-		return baseHealth_;
-	}
-	
-	public void setBaseHealth(byte health) {
-		baseHealth_ = health;
-	}
-	
-	public byte getAttack() {
-		return attack_;
-	}
-	
-	public void setAttack(byte attack) {
-		attack_ = attack;
-	}
-	
-	public void addAttack(byte value) {
-		attack_ += value;
-	}
-	
-	public boolean getDivineShield() {
-		return divineShield_;
-	}
-	
-	public void setDivineShield(boolean divineShield) {
-		divineShield_ = divineShield;
-	}
-	
-	public boolean hasAttacked() {
-		return hasAttacked_;
-	}
-	
-	public void hasAttacked(boolean hasAttacked) {
-		hasAttacked_ = hasAttacked;
-	}
-
-	public boolean hasWindFuryAttacked() {
-		return hasWindFuryAttacked_;
-	}
-	
-	public void hasWindFuryAttacked(boolean hasAttacked) {
-		hasWindFuryAttacked_ = hasAttacked;
-	}
-
-	public boolean getCharge() {
-		return charge_;
-	}
-	
-	public void setCharge(boolean value) {
-		charge_ = value;
-	}
-	
-	public boolean getFrozen() {
-		return frozen_;
-	}
-	
-	public void setFrozen(boolean value) {
-		frozen_ = value;
-	}
 	
 	public MinionState getState(MinionState state){
 		int index = 0;
